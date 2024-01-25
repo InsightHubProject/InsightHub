@@ -2,13 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import hero_img from "../assets/logo.png";
 
+import Layout from "../components/Layout";
+
 const Home = () => {
   return (
-    // The padding is smaller when the screen is smal
-      <div className="hero py-12 sm:py-32 bg-base-300">
+    <Layout>
+    {/* The padding is smaller when the screen is smal */}
+      <div className="hero py-12 sm:py-16 bg-base-300">
         <div className="hero-content grid md:grid-cols-2 gap-8">
           {/* The image for large screen */}
-          <div className="order-2 hidden md:block">
+          <div className="order-2 hidden md:block ml-auto">
             <img src={hero_img} alt="Hero" />
           </div>
 
@@ -32,6 +35,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+    </Layout>
   );
 };
 
