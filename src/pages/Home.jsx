@@ -26,7 +26,7 @@ const Home = () => {
             </div>
 
             <p className="py-6 text-3xl leading-normal">
-                Analyze Trends with Ease, Understand Sentiments in a Breeze.
+                Analyze Trends with Ease, Understand Sentiments in a Breeze
             </p>
 
             <Link to="/about" className="btn btn-warning w-1/2 text-xl">
