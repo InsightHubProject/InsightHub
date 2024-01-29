@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 
 export default function Signup() {
@@ -68,6 +69,12 @@ export default function Signup() {
                   Create Account
                 </button>
               </div>
+              <p className="mt-4">
+                Already have an account?{" "}
+                <Link to="/login" className="link link-info">
+                  Login
+                </Link>
+              </p>
             </form>
           </div>
         </div>
