@@ -2,7 +2,7 @@ import React from "react";
 
 const ContactFormSection = () => {
   return (
-    <div className="card w-full bg-base-100 shadow-xl mt-4 sm:mt-0">
+    <div className="card w-full shadow-xl mt-4 sm:mt-0 glass">
       <div className="card-body">
         {/* <h1 className="text-4xl font-bold text-center mb-6">Contact Us</h1> */}
 
