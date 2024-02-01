@@ -73,7 +73,7 @@ const ContactMethodsSection = () => {
         {/* Email container */}
         <div>
           <p className="text-xl sm:text-3xl font-bold">Email</p>
-          <p className="text-lg mb-12">Sleek_Walk@mail.com</p>
+          <p className="text-lg mb-12">InsightHub@sample.com</p>
         </div>
       </div>
     </div>
