@@ -7,6 +7,7 @@ import Reports from './pages/Reports';
 import AboutUs from './pages/AboutUs';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import ContactUs from './pages/ContactUs';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
     </>
   );
