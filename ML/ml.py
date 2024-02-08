@@ -27,5 +27,5 @@ tweet_text = "I love using InsightHub to analyze social media sentiments!"
 # Predict sentiment
 predicted_sentiment = predict_sentiment(tweet_text)
 
-# Output
+# Print output
 print(f"Predicted Sentiment: {predicted_sentiment}")
