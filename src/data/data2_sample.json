@@ -1,0 +1,20 @@
+[
+    {
+        "id": "2411",
+        "category": "Nike",
+        "sentiment": "Positive",
+        "content": "Just got my hands on the new Nike Air Max, they feel amazing!"
+    },
+    {
+        "id": "2412",
+        "category": "Nike",
+        "sentiment": "Positive",
+        "content": "Nike's running shoes are my go-to for training, they provide great support and comfort."
+    },
+    {
+        "id": "2413",
+        "category": "Nike",
+        "sentiment": "Negative",
+        "content": "Bought a pair of Nike sneakers, but they started falling apart after only a month of use. Disappointed with the quality."
+    }
+]
