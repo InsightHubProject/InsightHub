@@ -25,6 +25,11 @@ class TweetAnalyzer:
         df['year'] = df['date'].dt.year
         return df
 
-    def group_data(self, df):
+    def group_data_table(self, df):
         grouped_data = df.groupby(['year', 'sentiment']).size().unstack(fill_value=0)
         return grouped_data
+
+    def group_data_list(self, df):
+        grouped_data = df.groupby(['year', 'sentiment']).size().unstack(fill_value=0)
+        grouped_data_list = grouped_data.reset_index().values.tolist()
+        return grouped_data_list
