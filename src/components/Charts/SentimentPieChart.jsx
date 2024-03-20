@@ -46,7 +46,7 @@ export function SentimentPieCharts() {
         <label className="text-3xl font-bold text-gray-600">Gucci Sentiment Analysis Over Years</label>
       </div>
       {data2_sample.map((yearData, index) => (
-        <div key={index} className="card shadow-xl glass">
+        <div key={index} className="card bg-base-300 shadow-xl glass">
           <div className="card-body">
             <h2 className="card-title justify-center">{`Year: ${yearData[0]}`}</h2>
             <Pie data={generatePieData(yearData)} options={options} />
