@@ -71,5 +71,13 @@ const transformData = (importedData) => {
 
 export function SentimentLineChart() {
   const chartData = transformData(data2_sample);
-  return <Line options={options} data={chartData} />;
+  return (
+  <div className="flex justify-center p-7">
+    <div className="card shadow-xl bg-base-200 w-3/4">
+      <div className="card-body">
+        <Line options={options} data={chartData} />
+      </div>
+    </div>
+  </div>
+  );
 }

@@ -76,5 +76,13 @@ const transformData = (importedData) => {
 
 export function SentimentStackedBarChart() {
   const chartData = transformData(data2_sample);
-  return <Bar options={options} data={chartData} />;
+  return (
+    <div className="flex justify-center p-7">
+      <div className="card shadow-xl bg-base-200 w-3/4">
+        <div className="card-body">
+          <Bar options={options} data={chartData} />
+        </div>
+      </div>
+    </div>
+  );
 }
