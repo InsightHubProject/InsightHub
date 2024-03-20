@@ -2,17 +2,11 @@ import React, { useState } from "react";
 
 import Layout from "../components/Layout";
 
-import data1_sample from "../data/data1_sample.json";
-import data2_sample from "../data/data2_sample.json";
-
 import { SentimentStackedBarChart } from "../components/Charts/SentimentStackedBarChart";
 import { SentimentLineChart } from "../components/Charts/SentimentLineChart";
 import { SentimentPieCharts } from "../components/Charts/SentimentPieChart";
 
 const Analysis = () => {
-  // Assume data_sample is the array you want to use directly
-  const [data1] = useState(data1_sample);
-  const [data2] = useState(data2_sample);
   const [visualization, setVisualization] = useState("");
   // Initialize selectedDataset with null indicating no selection
   const [selectedDataset, setSelectedDataset] = useState(null);
@@ -20,13 +14,14 @@ const Analysis = () => {
   const handleDatasetChange = (event) => {
     const selectedValue = event.target.value;
     if (selectedValue === "1") {
-      setSelectedDataset(data1);
+      setSelectedDataset();
     } else if (selectedValue === "2") {
-      setSelectedDataset(data2);
+      setSelectedDataset();
     } else {
       setSelectedDataset(null);
     }
   };
+
 
   const handleVisualizationChange = (event) => {
     setVisualization(event.target.value);
@@ -55,56 +50,35 @@ const Analysis = () => {
               Choose Dataset
             </option>
             <option value="1">Twitter</option>
-            <option disabled value="2">Facebook (Soon)</option>
+            <option disabled value="2">
+              Facebook (Soon)
+            </option>
           </select>
           <button className="btn btn-warning w-1/8 text-xl">
             Generate Report
           </button>
         </div>
 
-        {/* Dropdown to select the type of visualization - potentially remove or adjust this part if not necessary for the current use case */}
+        {/* Dropdown to select the type of visualization*/}
         <div className="p-7">
           <select
             className="select select-warning"
             onChange={handleVisualizationChange}
             value={visualization}
           >
-            <option disabled value="">Choose Data Visualization To Display</option>
+            <option disabled value="">
+              Choose Data Visualization To Display
+            </option>
             <option value="Stacked Bar Chart">Stacked Bar Chart</option>
             <option value="Line Chart">Line Chart</option>
             <option value="Pie Chart">Pie Chart</option>
-            {/* Additional visualization options */}
           </select>
         </div>
 
         {/* Visualization components */}
-        {visualization === "Stacked Bar Chart" && (
-          <div className="flex justify-center p-7">
-            <div className="card shadow-xl bg-base-200 w-3/4">
-              <div className="card-body">
-                <SentimentStackedBarChart />
-              </div>
-            </div>
-          </div>
-        )}
-        {visualization === "Line Chart" && (
-          <div className="flex justify-center p-7">
-            <div className="card shadow-xl bg-base-200 w-3/4">
-              <div className="card-body">
-                <SentimentLineChart />
-              </div>
-            </div>
-          </div>
-        )}
-        {visualization === "Pie Chart" && (
-          <div className="flex justify-center p-7">
-            <div className="card shadow-xl bg-base-200">
-              <div className="card-body">
-                <SentimentPieCharts />
-              </div>
-            </div>
-          </div>
-        )}
+        {visualization === "Stacked Bar Chart" && <SentimentStackedBarChart />}
+        {visualization === "Line Chart" && <SentimentLineChart />}
+        {visualization === "Pie Chart" && <SentimentPieCharts />}
 
         <div className="flex justify-center p-2">
           <button className="btn btn-warning w-1/4 text-xl">Save Report</button>
