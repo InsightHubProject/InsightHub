@@ -80,7 +80,7 @@ const Analysis = () => {
         {/* Visualization components */}
         {visualization === "Stacked Bar Chart" && (
           <div className="flex justify-center p-7">
-            <div className="card glass shadow-xl w-3/4">
+            <div className="card shadow-xl bg-base-200 w-3/4">
               <div className="card-body">
                 <SentimentStackedBarChart />
               </div>
@@ -89,7 +89,7 @@ const Analysis = () => {
         )}
         {visualization === "Line Chart" && (
           <div className="flex justify-center p-7">
-            <div className="card glass shadow-xl w-3/4">
+            <div className="card shadow-xl bg-base-200 w-3/4">
               <div className="card-body">
                 <SentimentLineChart />
               </div>
@@ -98,7 +98,7 @@ const Analysis = () => {
         )}
         {visualization === "Pie Chart" && (
           <div className="flex justify-center p-7">
-            <div className="card glass shadow-xl">
+            <div className="card shadow-xl bg-base-200">
               <div className="card-body">
                 <SentimentPieCharts />
               </div>
