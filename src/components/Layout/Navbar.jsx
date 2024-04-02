@@ -94,17 +94,18 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Menu Section */}
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">
-            <li class="text-xl">
-              <Link to="/analysis">Analysis</Link>
-            </li>
-            <li class="text-xl">
-              <Link to="/reports">Reports</Link>
-            </li>
-          </ul>
-        </div>
+        {currentUser && (
+          <div className="navbar-center hidden lg:flex">
+            <ul className="menu menu-horizontal p-0">
+              <li className="text-xl">
+                <Link to="/analysis">Analysis</Link>
+              </li>
+              <li className="text-xl">
+                <Link to="/reports">Reports</Link>
+              </li>
+            </ul>
+          </div>
+        )}
 
         {/*User Section */}
         <div className="navbar-end hidden lg:flex ">
