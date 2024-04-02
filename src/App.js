@@ -10,19 +10,23 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ContactUs from "./pages/ContactUs";
 
+import { AuthProvider } from "./contexts/AuthContext";
+
 function App() {
   return (
     <>
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/analysis" element={<Analysis />} />
-        <Route path="/reports" element={<Reports />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/contact" element={<ContactUs />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/analysis" element={<Analysis />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/contact" element={<ContactUs />} />
+        </Routes>
+      </AuthProvider>
       <ScrollToTop />
     </>
   );
