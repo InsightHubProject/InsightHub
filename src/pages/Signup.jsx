@@ -49,7 +49,7 @@ export default function Signup() {
       setTimeout(() => {
         navigate("/"); // Adjust the path as needed
         setIsLoading(false); // Reset loading status
-      }, 2000); // 3000 ms delay = 3 seconds
+      }, 2000); // 2000 ms delay = 2 seconds
     } catch (err) {
       console.error(err);
       setError(err.message);
