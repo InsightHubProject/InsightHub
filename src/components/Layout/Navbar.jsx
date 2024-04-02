@@ -1,9 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useAuth } from "../../hooks/useAuth";
+
 import logo from "../../assets/small-logo.png";
 
 const Navbar = () => {
+
+  const { currentUser, logout } = useAuth();
+
+    // Used to handle the logout
+    const handleLogout = async () => {
+      try {
+        await logout();
+        // Optionally, redirect user to homepage or show a notification
+        console.log("Successfully Logged Out!");
+      } catch (error) {
+        console.error("Failed to logout: ", error);
+      }
+    };
+
   // Used for the light/dark mode
   // use theme from local storage if available or set light theme
   const [theme, setTheme] = useState(
@@ -113,12 +129,30 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <Link to="/login">Log in</Link>
-              </li>
-              <li>
-                <Link to="/signup">Sign up</Link>
-              </li>
+              {currentUser ? ( // Conditional rendering based on currentUser
+                <>
+                  <li className="menu-title">
+                    <span className="text-purple-500">
+                      Welcome, {currentUser.displayName}!
+                    </span>
+                  </li>
+
+                  <div className="divider -mt-0.5"></div>
+                  {/* - before mt is for forcing the button to go up */}
+                  <li className="-mt-5">
+                    <button onClick={handleLogout}>Logout</button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/login">Log in</Link>
+                  </li>
+                  <li>
+                    <Link to="/signup">Sign up</Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
