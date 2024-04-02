@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Layout from "../components/Layout";
+import Layout from "../components/Layout/Layout";
 
 export default function Login() {
+
+  const [isLoading, setIsLoading] = useState(false); // State to manage loading status
+ 
   return (
     <Layout>
       <div className="flex items-center justify-center h-screen bg-base-300 p-5">
-        <div className="card w-full max-w-md glass shadow-xl -mt-24">
+        <div className="card w-full max-w-md glass shadow-xl">
           <div className="card-body">
             <h1 className="text-4xl font-bold text-center mb-6">Login</h1>
 

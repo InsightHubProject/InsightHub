@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
-import Layout from "../components/Layout";
+import Layout from "../components/Layout/Layout";
 
 export default function Signup() {
   const { signUp } = useAuth();

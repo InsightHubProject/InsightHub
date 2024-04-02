@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import hero_img from "../assets/logo.png";
 
-import Layout from "../components/Layout";
+import Layout from "../components/Layout/Layout";
 
 const Home = () => {
   return (
