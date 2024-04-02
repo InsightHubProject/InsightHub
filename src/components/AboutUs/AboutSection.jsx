@@ -14,7 +14,7 @@ const AboutSection = ({ handleButtonClick }) => {
             <img src={about_img} alt="About" className="w-1/2 h-auto mx-auto" />
           </div>
           <p className="py-6 text-xl sm:text-3xl">
-            Explore Twitter trends effortlessly with InsightHub. Simple,
+            Explore Social Media trends effortlessly with InsightHub. Simple,
             user-friendly, and packed with insights – we make social media
             analytics easy for everyone
           </p>
