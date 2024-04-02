@@ -22,7 +22,6 @@ const Analysis = () => {
     }
   };
 
-
   const handleVisualizationChange = (event) => {
     setVisualization(event.target.value);
   };
