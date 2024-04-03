@@ -29,7 +29,7 @@ const Analysis = () => {
   return (
     <Layout>
       <div className="flex flex-col p-3 bg-base-300">
-        <h1 className="text-4xl p-7 font-semibold flex justify-center mt-12">
+        <h1 className="text-4xl p-7 font-semibold flex justify-center">
           Analysis Page
         </h1>
 
