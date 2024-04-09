@@ -11,6 +11,7 @@ const Analysis = () => {
   const [showAnalysisCard, setShowAnalysisCard] = useState(true); // New state to control analysis card visibility
   const [showVisualization, setShowVisualization] = useState(false); // New state to control visualization visibility
   const [isLoading, setIsLoading] = useState(false); // State to manage loading status
+  const [useStaticData, setUseStaticData] = useState(false);
 
   const handleGenerateReport = () => {
     setIsLoading(true); // Start loading
@@ -47,7 +48,7 @@ const Analysis = () => {
                 />
 
                 {/* Dropdown to select the dataset */}
-                <h3 className="text-2xl font-semibold mt-12">Select Dataset</h3>
+                <h3 className="text-2xl font-semibold mt-8">Select Dataset</h3>
                 <select className="select select-warning w-full max-w-xs">
                   <option value="" disabled selected>
                     Choose Dataset
@@ -58,8 +59,22 @@ const Analysis = () => {
                   </option>
                 </select>
 
+                {/* Checkbox to use static data */}
+                <div className="form-control mt-8">
+                  <label className="label cursor-pointer mr-36">
+                    <span className="label-text mr-4">Use Static Data</span>
+                    <input
+                      type="checkbox"
+                      className="toggle toggle-warning"
+                      checked={useStaticData}
+                      onChange={(e) => setUseStaticData(e.target.checked)}
+                    />
+                  </label>
+                </div>
+
+                {/* Generate report button */}
                 <button
-                  className="btn btn-warning w-full max-w-xs text-xl mt-16"
+                  className="btn btn-warning w-full max-w-xs text-xl mt-8"
                   onClick={handleGenerateReport}
                   disabled={isLoading}
                 >
