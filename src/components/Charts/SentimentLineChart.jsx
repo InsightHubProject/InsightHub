@@ -10,7 +10,6 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import data2_sample from '../../data/data2_sample';
 
 ChartJS.register(
   CategoryScale,
@@ -30,7 +29,7 @@ const options = {
     },
     title: {
       display: true,
-      text: 'Gucci Sentiment Analysis Over Years',
+      text: 'Sentiment Analysis Over Years', // We will dynamically update this below
       font: {
         size: 30,
       },
@@ -38,11 +37,11 @@ const options = {
   },
 };
 
-const transformData = (importedData) => {
-  const labels = importedData.map(item => item[0].toString());
-  const negativeData = importedData.map(item => item[1]);
-  const naturalData = importedData.map(item => item[2]);
-  const positiveData = importedData.map(item => item[3]);
+const transformData = (brandData) => {
+  const labels = brandData.map(item => item[0].toString());
+  const negativeData = brandData.map(item => item[1]);
+  const neutralData = brandData.map(item => item[2]); // Change 'Natural' to 'Neutral' for clarity
+  const positiveData = brandData.map(item => item[3]);
 
   return {
     labels,
@@ -54,8 +53,8 @@ const transformData = (importedData) => {
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
-        label: 'Natural',
-        data: naturalData,
+        label: 'Neutral',
+        data: neutralData,
         borderColor: 'rgb(255, 205, 86)',
         backgroundColor: 'rgba(255, 205, 86, 0.5)',
       },
@@ -69,15 +68,17 @@ const transformData = (importedData) => {
   };
 };
 
-export function SentimentLineChart() {
-  const chartData = transformData(data2_sample);
+export function SentimentLineChart({ brandName, brandData }) {
+  const data = transformData(brandData[brandName]);
+  options.plugins.title.text = `${brandName} Sentiment Analysis Over Years`;
+
   return (
-  <div className="flex justify-center p-7">
-    <div className="card shadow-xl bg-base-200 w-3/4">
-      <div className="card-body">
-        <Line options={options} data={chartData} />
+    <div className="flex justify-center p-7">
+      <div className="card shadow-xl bg-base-200 w-3/4">
+        <div className="card-body">
+          <Line options={options} data={data} />
+        </div>
       </div>
     </div>
-  </div>
   );
 }

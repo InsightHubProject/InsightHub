@@ -10,8 +10,6 @@ import {
   Legend,
 } from 'chart.js';
 
-import data2_sample from '../../data/data2_sample';
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -29,7 +27,7 @@ const options = {
     },
     title: {
       display: true,
-      text: 'Gucci Sentiment Analysis Over Years',
+      text: 'Sentiment Analysis Over Years',  // The title will be set dynamically in the options below
       font: {
         size: 30,
       }
@@ -46,11 +44,11 @@ const options = {
 };
 
 // Function to transform imported data into chart's data format
-const transformData = (importedData) => {
-  const labels = importedData.map(item => item[0].toString());
-  const negativeData = importedData.map(item => item[1]);
-  const naturalData = importedData.map(item => item[2]);
-  const positiveData = importedData.map(item => item[3]);
+const transformData = (brandData) => {
+  const labels = brandData.map(item => item[0].toString());
+  const negativeData = brandData.map(item => item[1]);
+  const naturalData = brandData.map(item => item[2]);
+  const positiveData = brandData.map(item => item[3]);
 
   return {
     labels,
@@ -61,7 +59,7 @@ const transformData = (importedData) => {
         backgroundColor: 'rgb(255, 99, 132)',
       },
       {
-        label: 'Natural',
+        label: 'Neutral', // Changed 'Natural' to 'Neutral' for conventional naming
         data: naturalData,
         backgroundColor: 'rgb(255, 205, 86)',
       },
@@ -74,15 +72,18 @@ const transformData = (importedData) => {
   };
 };
 
-export function SentimentStackedBarChart() {
-  const chartData = transformData(data2_sample);
+export function SentimentStackedBarChart({ brandName, brandData }) {
+  const data = transformData(brandData[brandName]);  // Ensure data is accessed correctly
+  options.plugins.title.text = `${brandName} Sentiment Analysis Over Years`; // Set dynamic title
+
   return (
     <div className="flex justify-center p-7">
       <div className="card shadow-xl bg-base-200 w-3/4">
         <div className="card-body">
-          <Bar options={options} data={chartData} />
+          <Bar options={options} data={data} />
         </div>
       </div>
     </div>
   );
 }
+
