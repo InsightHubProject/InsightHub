@@ -6,6 +6,8 @@ import { SentimentStackedBarChart } from "../components/Charts/SentimentStackedB
 import { SentimentLineChart } from "../components/Charts/SentimentLineChart";
 import { SentimentPieCharts } from "../components/Charts/SentimentPieChart";
 
+import BrandDataAnalyzed from "../data/Brand_Data_Analyzed";
+
 const Analysis = () => {
   const [visualization, setVisualization] = useState("");
   const [showAnalysisCard, setShowAnalysisCard] = useState(true); // New state to control analysis card visibility
@@ -114,10 +116,23 @@ const Analysis = () => {
 
               {/* Visualization components */}
               {visualization === "Stacked Bar Chart" && (
-                <SentimentStackedBarChart />
+                <SentimentStackedBarChart
+                  brandName="Gucci"
+                  brandData={BrandDataAnalyzed}
+                />
               )}
-              {visualization === "Line Chart" && <SentimentLineChart />}
-              {visualization === "Pie Chart" && <SentimentPieCharts />}
+              {visualization === "Line Chart" && (
+                <SentimentLineChart
+                  brandName="Gucci"
+                  brandData={BrandDataAnalyzed}
+                />
+              )}
+              {visualization === "Pie Chart" && (
+                <SentimentPieCharts
+                  brandName="Gucci"
+                  brandData={BrandDataAnalyzed}
+                />
+              )}
 
               <div className="flex justify-center p-2 py-10">
                 <button className="btn btn-warning w-1/4 text-xl">
