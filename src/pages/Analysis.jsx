@@ -41,29 +41,49 @@ const Analysis = () => {
           <div className="flex items-center justify-center bg-base-300 p-5">
             <div className="card w-full max-w-xl glass shadow-xl p-6 mb-6">
               <div className="card-body items-center">
-                {/* Search bar and dataset selection */}
-                <h3 className="text-2xl font-semibold">Enter Keyword</h3>
+                {/* Adjusted Search bar and dataset selection */}
+                <div className="flex items-center justify-between w-full max-w-xs">
+                  <h3 className="text-2xl font-semibold">Enter Keyword</h3>
+                  <a className="tooltip" data-tip="Brands Available: Gucci, Nike, Tesla">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </a>
+                </div>
                 <input
-                  className="input input-warning input-bordered w-full max-w-xs"
+                  className="input input-warning input-bordered w-full max-w-xs mt-2"
                   type="text"
                   placeholder="Keyword"
                 />
 
-                {/* Dropdown to select the dataset */}
-                <h3 className="text-2xl font-semibold mt-8">Select Dataset</h3>
-                <select className="select select-warning w-full max-w-xs">
-                  <option value="" disabled selected>
-                    Choose Dataset
-                  </option>
-                  <option value="twitter">Twitter</option>
-                  <option disabled value="facebook">
-                    Facebook (Soon)
-                  </option>
-                </select>
+                {/* Dataset selection aligned to the left */}
+                <div className="w-full max-w-xs mt-8">
+                  <h3 className="text-2xl font-semibold mb-4">Select Dataset</h3>
+                  <select className="select select-warning w-full max-w-xs">
+                    <option value="" disabled selected>
+                      Choose Dataset
+                    </option>
+                    <option value="twitter">Twitter</option>
+                    <option disabled value="facebook">
+                      Facebook (Soon)
+                    </option>
+                  </select>
+                </div>
 
                 {/* Checkbox to use static data */}
                 <div className="form-control mt-8">
-                  <label className="label cursor-pointer mr-36">
+                  <label className="label cursor-pointer mr-40">
                     <span className="label-text mr-4">Use Static Data</span>
                     <input
                       type="checkbox"
