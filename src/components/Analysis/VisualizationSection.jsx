@@ -5,7 +5,7 @@ import { SentimentPieCharts } from './Charts/SentimentPieChart';
 
 import BrandDataAnalyzed from '../../data/Brand_Data_Analyzed';
 
-const VisualizationSection = () => {
+const VisualizationSection = ({ keyword }) => {
     const [visualization, setVisualization] = useState('');
 
     const handleVisualizationChange = (e) => {
@@ -37,19 +37,19 @@ const VisualizationSection = () => {
                 {/* Visualization components */}
                 {visualization === 'Stacked Bar Chart' && (
                     <SentimentStackedBarChart
-                        brandName="Gucci"
+                        brandName={keyword}
                         brandData={BrandDataAnalyzed}
                     />
                 )}
                 {visualization === 'Line Chart' && (
                     <SentimentLineChart
-                        brandName="Gucci"
+                        brandName={keyword}
                         brandData={BrandDataAnalyzed}
                     />
                 )}
                 {visualization === 'Pie Chart' && (
                     <SentimentPieCharts
-                        brandName="Gucci"
+                        brandName={keyword}
                         brandData={BrandDataAnalyzed}
                     />
                 )}
