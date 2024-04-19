@@ -16,14 +16,20 @@ const Analysis = () => {
   const [useStaticData, setUseStaticData] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Function to capitalize the first letter of a word
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  }
+
   const handleGenerateReport = () => {
     setIsLoading(true);
+    
+    const brandName = capitalizeFirstLetter(keyword);
 
     if (useStaticData) {
       setTimeout(() => {
-        const keywordLower = keyword.toLowerCase();
         const dataKey = Object.keys(Data).find(
-          (key) => key.toLowerCase() === keywordLower
+          (key) => key === brandName
         );
 
         if (dataKey) {
