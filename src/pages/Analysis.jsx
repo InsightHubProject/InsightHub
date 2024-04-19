@@ -19,26 +19,30 @@ const Analysis = () => {
   const handleGenerateReport = () => {
     setIsLoading(true);
 
-    setTimeout(() => {
-      const keywordLower = keyword.toLowerCase();
-      const dataKey = Object.keys(Data).find(
-        (key) => key.toLowerCase() === keywordLower
-      );
+    if (useStaticData) {
+      setTimeout(() => {
+        const keywordLower = keyword.toLowerCase();
+        const dataKey = Object.keys(Data).find(
+          (key) => key.toLowerCase() === keywordLower
+        );
 
-      if (dataKey) {
-        // The brand exists, you can proceed to generate the report
-        console.log("Generating report for:", dataKey);
-        setShowVisualization(true);
-        setShowAnalysisCard(false);
-        setActualKeyword(dataKey); // Storing the actual data key with the correct case
-      } else {
-        // The brand does not exist, handle the error appropriately
-        console.log("Brand not found");
-        setIsModalOpen(true); // Open the modal
-      }
+        if (dataKey) {
+          // The brand exists, you can proceed to generate the report
+          console.log("Generating report for:", dataKey);
+          setShowVisualization(true);
+          setShowAnalysisCard(false);
+          setActualKeyword(dataKey); // Storing the actual data key with the correct case
+        } else {
+          // The brand does not exist, handle the error appropriately
+          console.log("Brand not found");
+          setIsModalOpen(true); // Open the modal
+        }
 
-      setIsLoading(false);
-    }, 2000);
+        setIsLoading(false);
+      }, 2000);
+    } else {
+      console.log("Generating report from API");
+    }
   };
 
   return (
