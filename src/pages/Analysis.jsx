@@ -1,3 +1,5 @@
+// TODO: Handle the form submission when the Python is not running
+
 import React, { useState } from "react";
 
 import Layout from "../components/Layout/Layout";
@@ -47,16 +49,23 @@ const Analysis = () => {
         setIsLoading(false);
       }, 2000);
     } else {
-      console.log("Generating report from API for brand:", capitalizedBrand); // Use the local variable directly
+      console.log("Generating report from API for brand:", capitalizedBrand);
       fetchProcessedWord(capitalizedBrand)
         .then((data) => {
           console.log("API Data:", data);
-          setShowVisualization(true);
-          setShowAnalysisCard(false);
+          setBrandData(data); // Assuming 'data' is the array or object you need
+          if (data && data.length > 0) {
+            // Adjust this condition based on the actual data structure
+            setShowVisualization(true);
+            setShowAnalysisCard(false);
+          } else {
+            console.log("No data returned for brand:", capitalizedBrand);
+            setIsModalOpen(true);
+          }
         })
         .catch((error) => {
           console.error("Error fetching from API:", error);
-          setIsModalOpen(true); // Optionally handle error states
+          setIsModalOpen(true);
         })
         .finally(() => {
           setIsLoading(false);
@@ -171,7 +180,9 @@ const Analysis = () => {
         )}
 
         {/* Conditional rendering based on showVisualization state */}
-        {showVisualization && <VisualizationSection keyword={brandName} brandData={brandData} />}
+        {showVisualization && (
+          <VisualizationSection keyword={brandName} brandData={brandData} />
+        )}
       </div>
     </Layout>
   );
