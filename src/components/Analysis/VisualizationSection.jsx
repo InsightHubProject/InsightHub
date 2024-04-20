@@ -5,10 +5,11 @@ import { SentimentPieCharts } from './Charts/SentimentPieChart';
 
 import BrandDataAnalyzed from '../../data/Brand_Data_Analyzed';
 
-const VisualizationSection = ({ keyword }) => {
+const VisualizationSection = ({ keyword, brandData }) => {
     const [visualization, setVisualization] = useState('');
 
     const handleVisualizationChange = (e) => {
+        console.log(brandData)
         setVisualization(e.target.value);
     };
 
@@ -38,19 +39,19 @@ const VisualizationSection = ({ keyword }) => {
                 {visualization === 'Stacked Bar Chart' && (
                     <SentimentStackedBarChart
                         brandName={keyword}
-                        brandData={BrandDataAnalyzed}
+                        brandData={brandData}
                     />
                 )}
                 {visualization === 'Line Chart' && (
                     <SentimentLineChart
                         brandName={keyword}
-                        brandData={BrandDataAnalyzed}
+                        brandData={brandData}
                     />
                 )}
                 {visualization === 'Pie Chart' && (
                     <SentimentPieCharts
                         brandName={keyword}
-                        brandData={BrandDataAnalyzed}
+                        brandData={brandData}
                     />
                 )}
 
