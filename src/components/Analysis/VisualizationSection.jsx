@@ -3,8 +3,6 @@ import { SentimentStackedBarChart } from './Charts/SentimentStackedBarChart';
 import { SentimentLineChart } from './Charts/SentimentLineChart';
 import { SentimentPieCharts } from './Charts/SentimentPieChart';
 
-import BrandDataAnalyzed from '../../data/Brand_Data_Analyzed';
-
 const VisualizationSection = ({ keyword, brandData }) => {
     const [visualization, setVisualization] = useState('');
 
