@@ -69,7 +69,7 @@ const transformData = (brandData) => {
 };
 
 export function SentimentLineChart({ brandName, brandData }) {
-  const data = transformData(brandData[brandName]);
+  const data = transformData(brandData);
   options.plugins.title.text = `${brandName} Sentiment Analysis Over Years`;
 
   return (

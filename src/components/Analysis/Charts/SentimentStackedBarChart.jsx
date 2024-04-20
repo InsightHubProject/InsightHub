@@ -73,7 +73,7 @@ const transformData = (brandData) => {
 };
 
 export function SentimentStackedBarChart({ brandName, brandData }) {
-  const data = transformData(brandData[brandName]);  // Ensure data is accessed correctly
+  const data = transformData(brandData);  // Ensure data is accessed correctly
   options.plugins.title.text = `${brandName} Sentiment Analysis Over Years`; // Set dynamic title
 
   return (

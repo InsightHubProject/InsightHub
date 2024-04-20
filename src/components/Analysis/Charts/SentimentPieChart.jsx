@@ -29,7 +29,7 @@ const options = {
 };
 
 export function SentimentPieCharts({ brandName, brandData }) {
-  const data = brandData[brandName];
+  const data = brandData;
 
   return (
     <div className="flex justify-center p-7">
