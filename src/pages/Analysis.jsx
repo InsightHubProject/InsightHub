@@ -2,19 +2,22 @@ import React, { useState } from "react";
 
 import Layout from "../components/Layout/Layout";
 
-import Data from "../data/Brand_Data_Analyzed";
+import StaticData from "../data/Brand_Data_Analyzed";
 
 import VisualizationSection from "../components/Analysis/VisualizationSection";
 import BrandNotFoundModal from "../components/Analysis/BrandNotFoundModal";
+
+import { fetchProcessedWord } from "../utils/PythonAPI";
 
 const Analysis = () => {
   const [showAnalysisCard, setShowAnalysisCard] = useState(true); // New state to control analysis card visibility
   const [showVisualization, setShowVisualization] = useState(false); // New state to control visualization visibility
   const [keyword, setKeyword] = useState("");
-  const [actualKeyword, setActualKeyword] = useState(""); // New state to store the actual keyword
+  const [brandName, setBrandName] = useState(""); // State to store the brand name [Gucci, Nike, Tesla
   const [isLoading, setIsLoading] = useState(false); // State to manage loading status
   const [useStaticData, setUseStaticData] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [brandData, setBrandData] = useState([]); // State to store the brand data [Twitter, Facebook, etc.
 
   // Function to capitalize the first letter of a word
   function capitalizeFirstLetter(string) {
@@ -23,31 +26,41 @@ const Analysis = () => {
 
   const handleGenerateReport = () => {
     setIsLoading(true);
-    
-    const brandName = capitalizeFirstLetter(keyword);
+    const capitalizedBrand = capitalizeFirstLetter(keyword);
+    setBrandName(capitalizedBrand); // Update the brand name
 
     if (useStaticData) {
       setTimeout(() => {
-        const dataKey = Object.keys(Data).find(
-          (key) => key === brandName
-        );
-
-        if (dataKey) {
+        const currentBrandData = StaticData[capitalizedBrand]; // Use the local variable directly
+        setBrandData(currentBrandData); // Update the brand data state
+        if (currentBrandData && currentBrandData.length > 0) {
           // The brand exists, you can proceed to generate the report
-          console.log("Generating report for:", dataKey);
+          console.log("Generating report data:", currentBrandData);
           setShowVisualization(true);
           setShowAnalysisCard(false);
-          setActualKeyword(dataKey); // Storing the actual data key with the correct case
         } else {
           // The brand does not exist, handle the error appropriately
-          console.log("Brand not found");
+          console.log("Brand not found for:", capitalizedBrand);
           setIsModalOpen(true); // Open the modal
         }
 
         setIsLoading(false);
       }, 2000);
     } else {
-      console.log("Generating report from API");
+      console.log("Generating report from API for brand:", capitalizedBrand); // Use the local variable directly
+      fetchProcessedWord(capitalizedBrand)
+        .then((data) => {
+          console.log("API Data:", data);
+          setShowVisualization(true);
+          setShowAnalysisCard(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching from API:", error);
+          setIsModalOpen(true); // Optionally handle error states
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
   };
 
@@ -72,7 +85,7 @@ const Analysis = () => {
                   {/* Adjusted Search bar and dataset selection */}
                   <div className="flex items-center justify-between w-full max-w-xs">
                     <h3 className="text-2xl font-semibold">Enter Keyword</h3>
-                    <a
+                    <button
                       className="tooltip"
                       data-tip="Brands Available: Gucci, Nike, Tesla"
                     >
@@ -90,7 +103,7 @@ const Analysis = () => {
                           d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
-                    </a>
+                    </button>
                   </div>
                   <input
                     className="input input-warning input-bordered w-full max-w-xs mt-2"
@@ -158,7 +171,7 @@ const Analysis = () => {
         )}
 
         {/* Conditional rendering based on showVisualization state */}
-        {showVisualization && <VisualizationSection keyword={actualKeyword} />}
+        {showVisualization && <VisualizationSection keyword={brandName} brandData={brandData} />}
       </div>
     </Layout>
   );
