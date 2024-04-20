@@ -18,6 +18,8 @@ def process_word():
     # Used to fetch tweets from the database (MongoDB)
     fetcher = TweetFetcher()
     tweets = fetcher.get_tweets(word)
+    if not tweets:
+        return jsonify({'error': 'No tweets found'}), 404
 
     # Used to analyze the tweets
     analyzer = TweetAnalyzer()

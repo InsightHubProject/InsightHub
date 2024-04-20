@@ -8,6 +8,7 @@ import StaticData from "../data/Brand_Data_Analyzed";
 
 import VisualizationSection from "../components/Analysis/VisualizationSection";
 import BrandNotFoundModal from "../components/Analysis/BrandNotFoundModal";
+import PythonNotRunningModal from "../components/Analysis/PythonNotRunningModal";
 
 import { fetchProcessedWord } from "../utils/PythonAPI";
 
@@ -15,11 +16,12 @@ const Analysis = () => {
   const [showAnalysisCard, setShowAnalysisCard] = useState(true); // New state to control analysis card visibility
   const [showVisualization, setShowVisualization] = useState(false); // New state to control visualization visibility
   const [keyword, setKeyword] = useState("");
-  const [brandName, setBrandName] = useState(""); // State to store the brand name [Gucci, Nike, Tesla
+  const [brandName, setBrandName] = useState(""); // State to store the brand name
   const [isLoading, setIsLoading] = useState(false); // State to manage loading status
   const [useStaticData, setUseStaticData] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [brandData, setBrandData] = useState([]); // State to store the brand data [Twitter, Facebook, etc.
+  const [isBrandModalOpen, setIsBrandModalOpen] = useState(false); // New state to control brand modal visibility if it is not found
+  const [isPythonModalOpen, setIsPythonModalOpen] = useState(false); // New state to control Python modal visibility if it is not running
+  const [brandData, setBrandData] = useState([]); // State to store the brand data
 
   // Function to capitalize the first letter of a word
   function capitalizeFirstLetter(string) {
@@ -32,6 +34,7 @@ const Analysis = () => {
     setBrandName(capitalizedBrand); // Update the brand name
 
     if (useStaticData) {
+      // Using timeout to simulate the API call
       setTimeout(() => {
         const currentBrandData = StaticData[capitalizedBrand]; // Use the local variable directly
         setBrandData(currentBrandData); // Update the brand data state
@@ -43,11 +46,12 @@ const Analysis = () => {
         } else {
           // The brand does not exist, handle the error appropriately
           console.log("Brand not found for:", capitalizedBrand);
-          setIsModalOpen(true); // Open the modal
+          setIsBrandModalOpen(true); // Open the modal
         }
 
         setIsLoading(false);
       }, 2000);
+      // Here is the API call to fetch the data from the Python server if not using static data
     } else {
       console.log("Generating report from API for brand:", capitalizedBrand);
       fetchProcessedWord(capitalizedBrand)
@@ -60,12 +64,17 @@ const Analysis = () => {
             setShowAnalysisCard(false);
           } else {
             console.log("No data returned for brand:", capitalizedBrand);
-            setIsModalOpen(true);
+            setIsBrandModalOpen(true);
           }
         })
         .catch((error) => {
           console.error("Error fetching from API:", error);
-          setIsModalOpen(true);
+
+          if (error.message === "Failed to fetch") {
+            setIsPythonModalOpen(true);
+          } else {
+            setIsBrandModalOpen(true);
+          }
         })
         .finally(() => {
           setIsLoading(false);
@@ -125,8 +134,14 @@ const Analysis = () => {
 
                   {/* Brand not found modal */}
                   <BrandNotFoundModal
-                    isOpen={isModalOpen}
-                    onClose={() => setIsModalOpen(false)}
+                    isOpen={isBrandModalOpen}
+                    onClose={() => setIsBrandModalOpen(false)}
+                  />
+
+                  {/* Python not running modal */}
+                  <PythonNotRunningModal
+                    isOpen={isPythonModalOpen}
+                    onClose={() => setIsPythonModalOpen(false)}
                   />
 
                   {/* Dataset selection aligned to the left */}
