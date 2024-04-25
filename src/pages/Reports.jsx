@@ -19,8 +19,9 @@ const Reports = () => {
               <tr>
                 <th></th>
                 <th>Name</th>
-                <th>Type</th>
+                <th>Brand</th>
                 <th>Dataset</th>
+                <th>Type</th>
               </tr>
             </thead>
             <tbody>
@@ -28,20 +29,23 @@ const Reports = () => {
               <tr onClick={() => handleRowClick('1')} className="cursor-pointer hover:bg-base-300 transition-colors duration-150">
                 <th>1</th>
                 <td className="py-8">Sample Report 1</td>
-                <td>Bar Chart</td>
+                <td>Gucci</td>
                 <td>Twitter</td>
+                <td>Bar Chart</td>
               </tr>
               <tr onClick={() => handleRowClick('2')} className="cursor-pointer hover:bg-base-300 transition-colors duration-150">
                 <th>2</th>
                 <td className="py-8">Sample Report 2</td>
-                <td>Pie Chart</td>
+                <td>Nike</td>
                 <td>Twitter</td>
+                <td>Pie Chart</td>
               </tr>
               <tr onClick={() => handleRowClick('3')} className="cursor-pointer hover:bg-base-300 transition-colors duration-150">
                 <th>3</th>
                 <td className="py-8">Sample Report 3</td>
-                <td>Bubble Chart</td>
+                <td>Tesla</td>
                 <td>Facebook</td>
+                <td>Bubble Chart</td>
               </tr>
             </tbody>
           </table>
