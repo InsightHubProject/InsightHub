@@ -7,7 +7,7 @@ const VisualizationSection = ({ keyword, brandData }) => {
     const [visualization, setVisualization] = useState('');
 
     const handleVisualizationChange = (e) => {
-        console.log(brandData)
+        console.log(brandData);
         setVisualization(e.target.value);
     };
 
@@ -18,14 +18,13 @@ const VisualizationSection = ({ keyword, brandData }) => {
                     <h3 className="text-2xl font-semibold p-6">
                         Choose Data Visualization To Display
                     </h3>
-                    {/* Dropdown to select the type of visualization*/}
                     <select
-                        className="select select-warning"
+                        className="select select-warning select-bordered w-full max-w-xs mb-12"
                         onChange={handleVisualizationChange}
                         value={visualization}
                     >
                         <option disabled value="">
-                            Choose Visualization
+                            Choose Visualization Type
                         </option>
                         <option value="Stacked Bar Chart">Stacked Bar Chart</option>
                         <option value="Line Chart">Line Chart</option>
@@ -33,7 +32,6 @@ const VisualizationSection = ({ keyword, brandData }) => {
                     </select>
                 </div>
 
-                {/* Visualization components */}
                 {visualization === 'Stacked Bar Chart' && (
                     <SentimentStackedBarChart
                         brandName={keyword}
@@ -53,11 +51,14 @@ const VisualizationSection = ({ keyword, brandData }) => {
                     />
                 )}
 
-                <div className="flex justify-center p-2 py-10">
-                    <button className="btn btn-warning w-1/4 text-xl">
-                        Save Report
-                    </button>
-                </div>
+                {/* Conditional rendering of Save Report button */}
+                {visualization && (
+                    <div className="flex justify-center p-2 py-10">
+                        <button className="btn btn-warning w-1/4 text-xl">
+                            Save Report
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
