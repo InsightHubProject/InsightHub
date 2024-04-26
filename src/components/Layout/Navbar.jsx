@@ -9,7 +9,6 @@ const Navbar = () => {
 
   const { currentUser, logout } = useAuth();
 
-  const sampleUser = true;
     // Used to handle the logout
     const handleLogout = async () => {
       try {
