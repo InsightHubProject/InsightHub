@@ -21,7 +21,7 @@ const Reports = () => {
                 <th>Name</th>
                 <th>Brand</th>
                 <th>Dataset</th>
-                <th>Type</th>
+                <th>Visualization</th>
               </tr>
             </thead>
             <tbody>
