@@ -12,6 +12,8 @@ import PythonNotRunningModal from "../components/Analysis/PythonNotRunningModal"
 
 import { fetchProcessedWord } from "../utils/PythonAPI";
 
+import { useAuth } from "../hooks/useAuth";
+
 const Analysis = () => {
   const [showAnalysisCard, setShowAnalysisCard] = useState(true); // New state to control analysis card visibility
   const [showVisualization, setShowVisualization] = useState(false); // New state to control visualization visibility
@@ -22,6 +24,16 @@ const Analysis = () => {
   const [isBrandModalOpen, setIsBrandModalOpen] = useState(false); // New state to control brand modal visibility if it is not found
   const [isPythonModalOpen, setIsPythonModalOpen] = useState(false); // New state to control Python modal visibility if it is not running
   const [brandData, setBrandData] = useState([]); // State to store the brand data
+
+  const [dataset, setDataset] = useState('');
+
+  const handleDatasetChange = (event) => {
+    setDataset(event.target.value);
+  };
+
+  const { currentUser } = useAuth();
+
+  const userID = currentUser?.uid;
 
   // Function to capitalize the first letter of a word
   function capitalizeFirstLetter(string) {
@@ -151,12 +163,14 @@ const Analysis = () => {
                     </h3>
                     <select
                       className="select select-warning w-full max-w-xs"
+                      value={dataset}
+                      onChange={handleDatasetChange}
                       required
                     >
                       <option value="" disabled selected hidden>
                         Choose Dataset
                       </option>
-                      <option value="twitter">Twitter</option>
+                      <option value="Twitter">Twitter</option>
                       <option disabled value="facebook">
                         Facebook (Soon)
                       </option>
@@ -196,7 +210,8 @@ const Analysis = () => {
 
         {/* Conditional rendering based on showVisualization state */}
         {showVisualization && (
-          <VisualizationSection keyword={brandName} brandData={brandData} />
+          console.log("User ID:", userID),
+          <VisualizationSection userID={userID} brand={brandName} dataset={dataset} brandData={brandData} />
         )}
       </div>
     </Layout>
