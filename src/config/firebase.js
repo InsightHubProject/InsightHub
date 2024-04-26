@@ -19,4 +19,10 @@ export const auth = getAuth(app); // Get the Auth service
 
 export { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile }; // Export the functions
 
+// Firestore Data Structure
+  // /users (collection)
+  //   /{UserID} (document)
+  //     /user_reports (subcollection)
+  //       /{ReportID} (document)
+
   
