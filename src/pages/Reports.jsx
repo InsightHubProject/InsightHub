@@ -1,13 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { collection, query, getDocs } from 'firebase/firestore';
+import { db } from '../config/firebase';
 import Layout from "../components/Layout/Layout";
 
 const Reports = () => {
   const navigate = useNavigate();
+  const [reports, setReports] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchReports = async () => {
+      // Assuming 'userID' is available and you are fetching reports for a specific user
+      const userID = 'oKrDAG6ANQbCvIuhiZl2Crelpar1'; // Replace with actual user ID or logic to obtain it
+      const reportsRef = collection(db, `users/${userID}/user_reports`);
+      const q = query(reportsRef);
+      
+      try {
+        const querySnapshot = await getDocs(q);
+        const fetchedReports = [];
+        
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const dateSavedString = data.dateSaved.toDate().toLocaleDateString(); // This will format the date as 'MM/DD/YYYY'
+          fetchedReports.push({
+            id: doc.id,
+            brand: data.brand,
+            dataset: data.dataset,
+            visualization: data.visualization,
+            dateSaved: dateSavedString
+          });
+        });
+
+        setReports(fetchedReports);
+        
+      } catch (error) {
+        console.error("Error fetching reports:", error);
+      }
+    };
+
+    fetchReports();
+    setIsLoading(false);
+  }, []); // Empty dependency array to run once
 
   const handleRowClick = (reportId) => {
     navigate(`/reports/${reportId}`);
   };
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="flex justify-center items-center h-screen bg-base-300">
+          <span className="loading loading-spinner text-warning"></span>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -18,35 +66,22 @@ const Reports = () => {
             <thead>
               <tr>
                 <th></th>
-                <th>Name</th>
                 <th>Brand</th>
                 <th>Dataset</th>
                 <th>Visualization</th>
+                <th>Date Saved</th>
               </tr>
             </thead>
             <tbody>
-              {/* Adding hover effect with hover:bg-base-200 for light theme */}
-              <tr onClick={() => handleRowClick('1')} className="cursor-pointer hover:bg-base-300 transition-colors duration-150">
-                <th>1</th>
-                <td className="py-8">Sample Report 1</td>
-                <td>Gucci</td>
-                <td>Twitter</td>
-                <td>Bar Chart</td>
-              </tr>
-              <tr onClick={() => handleRowClick('2')} className="cursor-pointer hover:bg-base-300 transition-colors duration-150">
-                <th>2</th>
-                <td className="py-8">Sample Report 2</td>
-                <td>Nike</td>
-                <td>Twitter</td>
-                <td>Pie Chart</td>
-              </tr>
-              <tr onClick={() => handleRowClick('3')} className="cursor-pointer hover:bg-base-300 transition-colors duration-150">
-                <th>3</th>
-                <td className="py-8">Sample Report 3</td>
-                <td>Tesla</td>
-                <td>Facebook</td>
-                <td>Bubble Chart</td>
-              </tr>
+              {reports.map((report, index) => (
+                <tr key={report.id} onClick={() => handleRowClick(report.id)} className="cursor-pointer hover:bg-base-300 transition-colors duration-150">
+                  <th>{index + 1}</th>
+                  <td className="py-8">{report.brand}</td>
+                  <td>{report.dataset}</td>
+                  <td>{report.visualization}</td>
+                  <td>{report.dateSaved}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
