@@ -10,6 +10,7 @@ import success from "../../assets/success.gif";
 
 const VisualizationSection = ({ userID, brand, dataset, brandData }) => {
   const [visualization, setVisualization] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // State to manage loading status
 
   const handleVisualizationChange = (e) => {
     setVisualization(e.target.value);
@@ -17,6 +18,7 @@ const VisualizationSection = ({ userID, brand, dataset, brandData }) => {
 
   // Function to handle saving the report to Firestore
   const handleSaveReport = async () => {
+    setIsLoading(true); // Indicate loading status
     // Current date and time
     const currentDate = new Date();
 
@@ -48,6 +50,7 @@ const VisualizationSection = ({ userID, brand, dataset, brandData }) => {
       await setDoc(doc(userReportsRef, reportID), reportData);
       console.log("Report saved successfully!");
       document.getElementById("success_modal").showModal();
+      setIsLoading(false); // Reset loading status
     } catch (error) {
       console.error("Error saving the report:", error);
     }
@@ -89,16 +92,21 @@ const VisualizationSection = ({ userID, brand, dataset, brandData }) => {
             <button
               className="btn btn-warning w-1/4 text-xl"
               onClick={handleSaveReport}
+              disabled={isLoading}
             >
-              Save Report
+              {isLoading ? (
+                <span className="loading loading-spinner loading-md"></span>
+              ) : (
+                "Save Report"
+              )}
             </button>
           </div>
         )}
-        <dialog id="success_modal" className="modal modal-bottom sm:modal-middle">
-          <SuccessDialog
-            text="Report Saved Successfully!"
-            img={success}
-          />
+        <dialog
+          id="success_modal"
+          className="modal modal-bottom sm:modal-middle"
+        >
+          <SuccessDialog text="Report Saved Successfully!" img={success} />
         </dialog>
       </div>
     </div>
