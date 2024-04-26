@@ -5,6 +5,9 @@ import { SentimentLineChart } from "./Charts/SentimentLineChart";
 import { SentimentPieCharts } from "./Charts/SentimentPieChart";
 import { doc, setDoc, collection } from "firebase/firestore"; // Import Firestore functions
 
+import SuccessDialog from "../SuccessDialog";
+import success from "../../assets/success.gif";
+
 const VisualizationSection = ({ userID, brand, dataset, brandData }) => {
   const [visualization, setVisualization] = useState("");
 
@@ -44,6 +47,7 @@ const VisualizationSection = ({ userID, brand, dataset, brandData }) => {
       // Adding the report to Firestore
       await setDoc(doc(userReportsRef, reportID), reportData);
       console.log("Report saved successfully!");
+      document.getElementById("success_modal").showModal();
     } catch (error) {
       console.error("Error saving the report:", error);
     }
@@ -90,6 +94,12 @@ const VisualizationSection = ({ userID, brand, dataset, brandData }) => {
             </button>
           </div>
         )}
+        <dialog id="success_modal" className="modal modal-bottom sm:modal-middle">
+          <SuccessDialog
+            text="Report Saved Successfully!"
+            img={success}
+          />
+        </dialog>
       </div>
     </div>
   );
