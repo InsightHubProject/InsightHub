@@ -59,6 +59,18 @@ const Reports = () => {
     );
   }
 
+  if (reports.length === 0) {
+    return (
+      <Layout>
+        <div className="bg-base-300 flex justify-center items-center h-screen">
+          <h1 className="text-4xl sm:text-5xl font-bold">
+            There Are No Reports Available
+          </h1>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className="flex flex-col p-3 bg-base-300">
