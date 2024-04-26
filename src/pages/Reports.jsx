@@ -33,14 +33,16 @@ const Reports = () => {
         });
 
         setReports(fetchedReports);
-        
+        setIsLoading(false);
+
       } catch (error) {
         console.error("Error fetching reports:", error);
+        setIsLoading(false);
+
       }
     };
 
     fetchReports();
-    setIsLoading(false);
   }, []); // Empty dependency array to run once
 
   const handleRowClick = (reportId) => {
