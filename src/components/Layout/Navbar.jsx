@@ -133,7 +133,7 @@ const Navbar = () => {
               {currentUser ? ( // Conditional rendering based on currentUser
                 <>
                   <li className="menu-title">
-                    <span className="text-purple-500">
+                    <span className="text-yellow-500">
                       Welcome, {currentUser.displayName}!
                     </span>
                   </li>
