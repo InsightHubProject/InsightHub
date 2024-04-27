@@ -21,9 +21,23 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/analysis" element={<PrivateWrapper><Analysis /></PrivateWrapper>} />
-          <Route path="/reports" element={<PrivateWrapper><Reports /></PrivateWrapper>} />
-          <Route path="/reports/:reportId" element={<PrivateWrapper><ReportDetail /></PrivateWrapper>} />
+          <Route
+            path="/analysis"
+            element={
+              <PrivateWrapper>
+                <Analysis />
+              </PrivateWrapper>
+            }
+          />
+          <Route
+            path="/reports"
+            element={
+              <PrivateWrapper>
+                <Reports />
+              </PrivateWrapper>
+            }
+          />
+          <Route path="/reports/:reportId" element={<ReportDetail />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
