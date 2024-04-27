@@ -115,9 +115,10 @@ const Analysis = () => {
                   {/* Adjusted Search bar and dataset selection */}
                   <div className="flex items-center justify-between w-full max-w-xs">
                     <h3 className="text-2xl font-semibold">Enter Keyword</h3>
-                    <button
+                    <span
                       className="tooltip"
                       data-tip="Brands Available: Gucci, Nike, Tesla"
+                      href="#"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +134,7 @@ const Analysis = () => {
                           d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
-                    </button>
+                    </span>
                   </div>
                   <input
                     className="input input-warning input-bordered w-full max-w-xs mt-2"
