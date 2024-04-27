@@ -65,12 +65,12 @@ export default function Signup() {
             <h1 className="text-4xl font-bold text-center mb-10">New Account</h1>
             {/* Used to show the Error/Success notification to the user */}
             {error ? (
-              <div className="alert alert-error">
+              <div className="alert alert-error mb-4">
                 <span>Error! {error}</span>
               </div>
             ) : (
               signupSuccess && (
-                <div className="alert alert-success">
+                <div className="alert alert-success mb-4">
                   <span>Signup Successful, Welcome!</span>
                 </div>
               )
@@ -178,10 +178,8 @@ export default function Signup() {
               <div className="form-control mt-8">
                 <button
                   type="submit"
-                  className="btn btn-warning"
+                  className="btn btn-warning text-lg"
                   disabled={isLoading}
-                  style={{ fontSize: '1.20rem' }} // Inline style to increase font size
-
                 >
                   {isLoading ? (
                     <span className="loading loading-spinner loading-md"></span>
