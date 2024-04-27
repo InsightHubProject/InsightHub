@@ -2,17 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, query, getDocs } from 'firebase/firestore';
 import { db } from '../config/firebase';
+import { useAuth } from "../hooks/useAuth";
+
 import Layout from "../components/Layout/Layout";
 
 const Reports = () => {
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
+  const userID = currentUser?.uid;
+
   const [reports, setReports] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchReports = async () => {
-      // Assuming 'userID' is available and you are fetching reports for a specific user
-      const userID = 'oKrDAG6ANQbCvIuhiZl2Crelpar1'; // Replace with actual user ID or logic to obtain it
       const reportsRef = collection(db, `users/${userID}/user_reports`);
       const q = query(reportsRef);
       
@@ -43,7 +46,7 @@ const Reports = () => {
     };
 
     fetchReports();
-  }, []); // Empty dependency array to run once
+  }, [userID]); // Empty dependency array to run once
 
   const handleRowClick = (reportId) => {
     navigate(`/reports/${reportId}`);
