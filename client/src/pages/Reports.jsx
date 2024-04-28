@@ -81,7 +81,7 @@ const Reports = () => {
         <div className="overflow-x-auto p-12 pb-32">
           <table className="table glass text-2xl">
             <thead>
-              <tr>
+              <tr className="text-xl">
                 <th></th>
                 <th>Brand</th>
                 <th>Dataset</th>
