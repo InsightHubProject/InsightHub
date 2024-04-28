@@ -2,8 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 # Assuming TweetFetcher and TweetAnalyzer are in the correct path
-from TweetFetcher import TweetFetcher
-from TweetAnalyzer import TweetAnalyzer
+from src.TweetFetcher import TweetFetcher
+from src.TweetAnalyzer import TweetAnalyzer
+
 
 app = Flask(__name__)
 CORS(app)
