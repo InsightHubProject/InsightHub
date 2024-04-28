@@ -3,7 +3,7 @@ export async function fetchProcessedWord(word) {
   // fetch("https://your-app.onrender.com/process_word"
 
   // For production use:
-  const response = await fetch("https://your-app.onrender.com/process_word", {
+  const response = await fetch("https://insight-hub.onrender.com/process_word", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
