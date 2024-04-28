@@ -21,7 +21,7 @@ const GoalSection = forwardRef((props, ref) => {
             Join us in championing simplicity and meaningful insights in every
             data-driven step you take
           </p>
-          <Link to={"/"} className="btn btn-warning w-1/2 text-xl mt-4">
+          <Link to={"/"} className="btn btn-warning w-1/2 text-xl mt-4 mb-16">
             Back Home
           </Link>
         </div>
