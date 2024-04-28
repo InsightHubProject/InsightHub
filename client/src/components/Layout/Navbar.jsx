@@ -6,19 +6,18 @@ import { useAuth } from "../../hooks/useAuth";
 import logo from "../../assets/small-logo.png";
 
 const Navbar = () => {
-
   const { currentUser, logout } = useAuth();
 
-    // Used to handle the logout
-    const handleLogout = async () => {
-      try {
-        await logout();
-        // Optionally, redirect user to homepage or show a notification
-        console.log("Successfully Logged Out!");
-      } catch (error) {
-        console.error("Failed to logout: ", error);
-      }
-    };
+  // Used to handle the logout
+  const handleLogout = async () => {
+    try {
+      await logout();
+      // Optionally, redirect user to homepage or show a notification
+      console.log("Successfully Logged Out!");
+    } catch (error) {
+      console.error("Failed to logout: ", error);
+    }
+  };
 
   // Used for the light/dark mode
   // use theme from local storage if available or set light theme
@@ -69,21 +68,41 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <Link to="/analysis">Analysis</Link>
-              </li>
-              <li>
-                <Link to="/reports">Reports</Link>
-              </li>
-
-              <div className="divider"></div>
-
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/signup">Signup</Link>
-              </li>
+              {currentUser && (
+                <>
+                  <li className="menu-title">
+                    <span className="text-yellow-500">
+                      Welcome, {currentUser.displayName}!
+                    </span>
+                  </li>
+                  <dic className="divider"></dic>
+                  <li>
+                    <Link to="/analysis">Analysis</Link>
+                  </li>
+                  <li>
+                    <Link to="/reports">Reports</Link>
+                  </li>
+                  <div className="divider"></div> {/* Styled as a divider */}
+                </>
+              )}
+              {currentUser ? (
+                <>
+                  {/* Adjust CSS for -mt-0.5 effect if needed */}
+                  <li className="negative-margin">
+                    {/* Use class to adjust margins */}
+                    <button onClick={handleLogout}>Logout</button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/login">Log in</Link>
+                  </li>
+                  <li>
+                    <Link to="/signup">Sign up</Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-2xl">
