@@ -13,15 +13,15 @@ const GoalSection = forwardRef((props, ref) => {
         <motion.div
           initial={{ x: '-100vw' }}
           animate={inView ? { x: 0 } : { x: '-100vw' }}
-          transition={{ type: 'spring', stiffness: 120 }}
+          transition={{ type: 'spring', stiffness: 50 }}
           className="hidden md:block"
         >
           <img src={goal_img} alt="Goal" />
         </motion.div>
         <motion.div
-          initial={{ x: '100vw' }}
-          animate={inView ? { x: 0 } : { x: '100vw' }}
-          transition={{ type: 'spring', stiffness: 120 }}
+          initial={{ x: '-100vw' }}
+          animate={inView ? { x: 0 } : { x: '-100vw' }}
+          transition={{ type: 'spring', stiffness: 50 }}
         >
           <h1 className="text-5xl font-bold leading-normal">Our Goal</h1>
           <div className="block md:hidden">

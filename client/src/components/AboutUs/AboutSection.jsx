@@ -9,15 +9,15 @@ const AboutSection = ({ handleButtonClick }) => {
         <motion.div
           initial={{ x: "100vw" }}
           animate={{ x: 0 }}
-          transition={{ type: "spring", stiffness: 120 }}
+          transition={{ type: "spring", stiffness: 50 }}
           className="order-2 ml-auto hidden md:block"
         >
           <img src={about_img} alt="About" />
         </motion.div>
         <motion.div
-          initial={{ x: "-100vw" }}
+          initial={{ x: "100vw" }}
           animate={{ x: 0 }}
-          transition={{ type: "spring", stiffness: 120 }}
+          transition={{ type: "spring", stiffness: 50 }}
         >
           <h1 className="text-5xl font-bold leading-normal">About Us</h1>
           <div className="block md:hidden">

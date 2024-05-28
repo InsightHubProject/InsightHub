@@ -19,7 +19,7 @@ const Home = () => {
           <motion.div
             initial={{ x: "100vw" }}
             animate={{ x: 0 }}
-            transition={{ type: "spring", stiffness: 120 }}
+            transition={{ type: "spring", stiffness: 50 }} 
             className="order-2 hidden md:block ml-auto"
           >
             <img src={hero_img} alt="Hero" />
@@ -28,7 +28,7 @@ const Home = () => {
           <motion.div
             initial={{ x: "-100vw" }}
             animate={{ x: 0 }}
-            transition={{ type: "spring", stiffness: 120 }}
+            transition={{ type: "spring", stiffness: 50 }} // Adjusted properties
           >
             <h1 className="text-4xl sm:text-5xl font-bold leading-normal">
               Welcome to InsightHub, Your Gateway to Social Media Insights!
