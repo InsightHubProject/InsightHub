@@ -1,29 +1,19 @@
-export async function fetchExpectedPrice(carDetails) {
-  // Log the payload to verify the structure
-  console.log("Sending car details:", carDetails);
-
-  try {
-    const response = await fetch("https://thammenha.onrender.com/predict/ksa", {
+export async function fetchProcessedWord(word) {
+  // for local use:
+  // fetch("https://your-app.onrender.com/process_word"
+  
+    // For production use:
+    const response = await fetch("https://insight-hub.onrender.com/process_word", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(carDetails),
+      body: JSON.stringify({ word }),
     });
-
     const data = await response.json();
-
-    // Check if response is okay
     if (response.ok) {
-      return data.Predicted_Price; // Use 'Predicted_Price' based on backend response
+      return data;
     } else {
-      // Log and throw the error for better debugging
-      console.error("Error response:", data);
-      throw new Error(data.error || "Failed to fetch expected price");
+      throw new Error(data.error || "Failed to fetch");
     }
-  } catch (error) {
-    // Log fetch errors
-    console.error("Fetch error:", error);
-    throw new Error("Failed to fetch expected price. Check the input data or server configuration.");
   }
-}
